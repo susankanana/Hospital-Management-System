@@ -17,23 +17,38 @@ namespace Hospital_Management_System.data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //many-to-many
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Doctor>()
-                .HasMany(d => d.patients)
-                .WithMany(p => p.doctors)
-                .UsingEntity(b => b.ToTable("Appointment"));
-
-            ////one-to-many
+            ////many-to-many
             //base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<Room>()
-            //    .HasMany(r => r.patients)
-            //    .WithOne(p => p.room)
-            //    .HasForeignKey(p => p.RoomID);
+            //modelBuilder.Entity<Doctor>()
+            //    .HasMany(d => d.patients)
+            //    .WithMany(p => p.doctors)
+            //    .UsingEntity(b => b.ToTable("DoctorPatient"));
+
+
+            //one-to-many
+            modelBuilder.Entity<Patient>()
+                .HasMany(p => p.appointments)
+                .WithOne(a => a.patient)
+                .HasForeignKey(a => a.PatientId);
+
+            modelBuilder.Entity<Doctor>()
+                .HasMany(d => d.appointments)
+                .WithOne(a => a.doctor)
+                .HasForeignKey(a => a.DoctorId);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(r => r.patients)
+                .WithOne(p => p.room)
+                .HasForeignKey(p => p.RoomID);
+
+
+
+
 
         }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }

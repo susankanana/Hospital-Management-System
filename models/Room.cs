@@ -16,5 +16,6 @@ namespace Hospital_Management_System.models
         public string RoomNumber { get; set; }=string.Empty;
         public string RoomType { get; set;} = string.Empty;
         public List<Patient> patients { get; set; }
+
     }
 }

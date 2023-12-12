@@ -16,8 +16,11 @@ namespace Hospital_Management_System.models
         public string FirstName { get; set; }=string.Empty;
         public string LastName { get; set; } =string.Empty;
         public string Title { get; set; }= string.Empty;
+        public string Email { get; set; } = string.Empty;
+        [ForeignKey("Room")]
         public int RoomID { get; set; } = 0;
-        public Room room { get; set; }
-        public List<Doctor> doctors { get; set; }
+        public Room room { get; set; } = null!;
+        public List<Appointment>? appointments { get; set; }
+        
     }
 }

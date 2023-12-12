@@ -16,6 +16,7 @@ namespace Hospital_Management_System.models
         public string DoctorName { get; set; }=string.Empty;
         public string Speciality { get; set;} = string.Empty;
 
-        public List<Patient> patients { get; set; }
+        public List<Appointment>? appointments { get; set; }
+        
     }
 }
